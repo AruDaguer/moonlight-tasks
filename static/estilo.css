@@ -1,10 +1,10 @@
 :root {
-    --midnight: #0f172a;
-    --moonlight: #1e293b;
-    --moon-blue: #3b82f6;
-    --moon-glow: #60a5fa;
-    --silver-shadow: #e2e8f0;
-    --text-light: #f8fafc;
+    --meia-noite: #0f172a;
+    --luz-lunar: #1e293b;
+    --azul-lua: #3b82f6;
+    --brilho-lua: #60a5fa;
+    --sombra-prateada: #e2e8f0;
+    --texto-claro: #f8fafc;
 }
 
 * {
@@ -15,7 +15,7 @@
 }
 
 body {
-    background-color: var(--midnight);
+    background-color: var(--meia-noite);
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -23,22 +23,21 @@ body {
     padding: 20px;
 }
 
-.app-container {
+.aplicativo-container {
     display: flex;
     width: 100%;
     max-width: 900px;
-    background-color: var(--moonlight);
+    background-color: var(--luz-lunar);
     border-radius: 20px;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     overflow: hidden;
 }
 
-/* Coluna Esquerda - Formulário */
-.form-column {
+.coluna-formulario {
     flex: 1;
     padding: 40px;
-    background: linear-gradient(135deg, var(--moonlight) 0%, var(--midnight) 100%);
-    color: var(--text-light);
+    background: linear-gradient(135deg, var(--luz-lunar) 0%, var(--meia-noite) 100%);
+    color: var(--texto-claro);
 }
 
 h1 {
@@ -54,37 +53,37 @@ h1::after {
     display: block;
     width: 50%;
     height: 3px;
-    background: var(--moon-glow);
+    background: var(--brilho-lua);
     margin-top: 8px;
     border-radius: 3px;
 }
 
-.input-group {
+.grupo-input {
     margin-bottom: 30px;
 }
 
-.input-group input {
+.grupo-input input {
     width: 100%;
     padding: 15px;
-    border: 2px solid var(--moon-blue);
+    border: 2px solid var(--azul-lua);
     border-radius: 10px;
     font-size: 16px;
     background-color: rgba(255, 255, 255, 0.1);
-    color: var(--text-light);
+    color: var(--texto-claro);
     margin-bottom: 15px;
     transition: all 0.3s;
 }
 
-.input-group input:focus {
+.grupo-input input:focus {
     outline: none;
-    border-color: var(--moon-glow);
+    border-color: var(--brilho-lua);
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-.input-group button {
+.grupo-input button {
     width: 100%;
     padding: 15px;
-    background-color: var(--moon-blue);
+    background-color: var(--azul-lua);
     color: white;
     border: none;
     border-radius: 10px;
@@ -94,27 +93,26 @@ h1::after {
     transition: all 0.3s;
 }
 
-.input-group button:hover {
-    background-color: var(--moon-glow);
+.grupo-input button:hover {
+    background-color: var(--brilho-lua);
     transform: translateY(-2px);
 }
 
-/* Coluna Direita - Lista de Tarefas */
-.tasks-column {
+.coluna-tarefas {
     flex: 1;
     padding: 40px;
-    background-color: var(--moonlight);
+    background-color: var(--luz-lunar);
     border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.task-list {
+.lista-tarefas {
     list-style: none;
     max-height: 500px;
     overflow-y: auto;
     padding-right: 10px;
 }
 
-.task-item {
+.item-tarefa {
     background-color: rgba(255, 255, 255, 0.05);
     padding: 15px;
     margin-bottom: 15px;
@@ -122,36 +120,36 @@ h1::after {
     display: flex;
     align-items: center;
     transition: all 0.3s;
-    border-left: 3px solid var(--moon-blue);
+    border-left: 3px solid var(--azul-lua);
 }
 
-.task-item:hover {
+.item-tarefa:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-.task-item.completed {
+.item-tarefa.concluida {
     opacity: 0.7;
-    border-left-color: var(--silver-shadow);
+    border-left-color: var(--sombra-prateada);
 }
 
-.task-item.completed .task-text {
+.item-tarefa.concluida .texto-tarefa {
     text-decoration: line-through;
-    color: var(--silver-shadow);
+    color: var(--sombra-prateada);
 }
 
-.task-text {
+.texto-tarefa {
     flex: 1;
     margin-left: 15px;
-    color: var(--text-light);
+    color: var(--texto-claro);
     font-weight: 300;
 }
 
-.task-actions {
+.acoes-tarefa {
     display: flex;
     gap: 10px;
 }
 
-.task-actions button {
+.acoes-tarefa button {
     background: none;
     border: none;
     cursor: pointer;
@@ -165,23 +163,22 @@ h1::after {
     transition: all 0.2s;
 }
 
-.complete-btn {
-    color: var(--moon-glow);
+.botao-concluir {
+    color: var(--brilho-lua);
 }
 
-.complete-btn:hover {
+.botao-concluir:hover {
     background-color: rgba(59, 130, 246, 0.2);
 }
 
-.delete-btn {
+.botao-excluir {
     color: #f87171;
 }
 
-.delete-btn:hover {
+.botao-excluir:hover {
     background-color: rgba(248, 113, 113, 0.2);
 }
 
-/* Barra de rolagem */
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -192,6 +189,6 @@ h1::after {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--moon-blue);
+    background: var(--azul-lua);
     border-radius: 10px;
 }

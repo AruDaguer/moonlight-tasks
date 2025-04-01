@@ -4,53 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moonlight Tasks 🌙</title>
-    <!-- Fontes e ícones -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- CSS externo -->
-    <link rel="stylesheet" href="../static/estilo.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilo.css') }}">
 </head>
 <body>
-    <div class="app-container">
-        <!-- Coluna Esquerda: Formulário -->
-        <div class="form-column">
+    <div class="aplicativo-container">
+        <div class="coluna-formulario">
             <h1>Moonlight Tasks 🌙</h1>
             
-            <div class="input-group">
-                <input type="text" id="task-input" placeholder="O que a lua te lembra de fazer hoje?">
-                <button id="add-btn">
+            <div class="grupo-input">
+                <input type="text" id="input-tarefa" placeholder="O que a lua te lembra de fazer hoje?">
+                <button id="botao-adicionar">
                     <i class="fas fa-moon"></i> Adicionar Tarefa
                 </button>
             </div>
             
-            <div class="task-stats">
-                <p>Tarefas Totais: <span id="total-tasks">0</span></p>
-                <p>Concluídas: <span id="completed-tasks">0</span></p>
+            <div class="estatisticas-tarefas">
+                <p>Tarefas Totais: <span id="total-tarefas">{{ total_tasks }}</span></p>
+                <p>Concluídas: <span id="tarefas-concluidas">{{ completed_tasks }}</span></p>
             </div>
         </div>
-        
-        <!-- Coluna Direita: Lista de Tarefas -->
-        <div class="tasks-column">
+
+        <div class="coluna-tarefas">
             <h2>Suas Tarefas Lunares</h2>
-            <ul class="task-list" id="task-list">
-                <li class="task-item">
-                    <i class="fas fa-circle-notch" style="color: var(--moon-glow);"></i>
-                    <span class="task-text">Exemplo de tarefa noturna</span>
-                    <div class="task-actions">
-                        <button class="complete-btn">
+            <ul class="lista-tarefas" id="lista-tarefas">
+                {% for tarefa in tarefas %}
+                <li class="item-tarefa {% if tarefa.concluida %}concluida{% endif %}" data-id="{{ tarefa.id }}">
+                    <i class="fas fa-circle-notch" style="color: var(--brilho-lua);"></i>
+                    <span class="texto-tarefa">{{ tarefa.texto }}</span>
+                    <div class="acoes-tarefa">
+                        <button class="botao-concluir" onclick="alternarTarefa({{ tarefa.id }})">
                             <i class="fas fa-check"></i>
                         </button>
-                        <button class="delete-btn">
+                        <button class="botao-excluir" onclick="excluirTarefa({{ tarefa.id }})">
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>
                 </li>
+                {% endfor %}
             </ul>
         </div>
     </div>
 
     <script>
-        
+        document.getElementById('botao-adicionar').addEventListener('click', () => {
+            const input = document.getElementById('input-tarefa');
+            if (input.value.trim() === '') return;
+            
+            fetch('/adicionar', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ texto: input.value })
+            }).then(() => {
+                input.value = '';
+                window.location.reload();
+            });
+        });
+
+        function alternarTarefa(id) {
+            fetch(`/atualizar/${id}`, { method: 'POST' })
+                .then(() => window.location.reload());
+        }
+
+        function excluirTarefa(id) {
+            fetch(`/excluir/${id}`, { method: 'POST' })
+                .then(() => window.location.reload());
+        }
     </script>
 </body>
 </html>
