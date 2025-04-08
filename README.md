@@ -41,14 +41,13 @@ Um aplicativo de lista de tarefas com tema noturno, perfeito para quem gosta de 
 | Texto Claro       | `#f8fafc`   |
 
 ## 📂 Estrutura do Projeto
-    ```text
     moonlight-tasks/
     │
     ├── app.py                 # Aplicação principal (Backend Flask)
     │
     ├── static/                # Arquivos estáticos
     │   ├── estilo.css         # Estilos CSS personalizados
-    │   └── tasks.json         # Armazenamento das tarefas (criado automaticamente)
+    │   └── tasks.json         # Armazenamento das tarefas 
     │
     └── templates/             # Templates HTML
         └── index.html         # Página principal da aplicação
