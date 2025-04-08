@@ -5,7 +5,7 @@
 </div>
 
 ## ✨ Sobre o Projeto
-Um aplicativo de lista de tarefas com tema noturno, perfeito para quem gosta de organizar suas atividades durante! Desenvolvido com:
+Um aplicativo de lista de tarefas com tema noturno, perfeito para quem gosta de organizar suas atividades! Desenvolvido com:
 
 - **Frontend**: HTML5, CSS3 e JavaScript
 - **Backend**: Python com Flask
