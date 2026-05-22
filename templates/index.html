@@ -14,7 +14,7 @@
             <h1>Moonlight Tasks 🌙</h1>
             
             <div class="grupo-input">
-                <input type="text" id="input-tarefa" placeholder="O que a lua te lembra de fazer hoje?">
+                <input type="text" id="input-tarefa" placeholder="O que a lua te lembra de fazer hoje?" autofocus>
                 <button id="botao-adicionar">
                     <i class="fas fa-moon"></i> Adicionar Tarefa
                 </button>
@@ -50,7 +50,11 @@
     <script>
         document.getElementById('botao-adicionar').addEventListener('click', () => {
             const input = document.getElementById('input-tarefa');
-            if (input.value.trim() === '') return;
+            
+            if (input.value.trim() === '') {
+                input.value = ''; 
+                return;
+            }
             
             fetch('/adicionar', {
                 method: 'POST',
@@ -60,6 +64,12 @@
                 input.value = '';
                 window.location.reload();
             });
+        });
+
+        document.getElementById('input-tarefa').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('botao-adicionar').click();
+            }
         });
 
         function alternarTarefa(id) {

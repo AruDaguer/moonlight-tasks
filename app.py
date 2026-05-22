@@ -27,12 +27,14 @@ def inicio():
 
 @app.route('/adicionar', methods=['POST'])
 def adicionar():
+    tarefas = carregar_tarefas()
+    novo_id = max((t['id'] for t in tarefas), default=0) + 1
+    
     nova_tarefa = {
-        'id': len(carregar_tarefas()) + 1,
+        'id': novo_id,
         'texto': request.json.get('texto'),
         'concluida': False
     }
-    tarefas = carregar_tarefas()
     tarefas.append(nova_tarefa)
     salvar_tarefas(tarefas)
     return jsonify({'status': 'sucesso'})
